@@ -34,7 +34,7 @@ module.exports = {
                     .setURL(`https://discord.gg/ztYgCrEPWD`)
                     .setStyle(ButtonStyle.Link)
             );
-            await interaction.reply({
+            await interaction.followUp({
                 embeds: [embed],
                 components: [row],
                 ephemeral: true,

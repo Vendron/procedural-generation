@@ -1,4 +1,5 @@
-const DungeonGrid = require("../../models/DungeonGrid");
+const Grid = require("../../models/grid");
+const { visualizeGrid } = require("../../models/grid.visualisation");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -15,10 +16,10 @@ module.exports = {
         //reply pending
         await interaction.deferReply({ ephemeral: false });
         const target = interaction.user;
-        const dungeonSize = interaction.options.getInteger("size");
-        const dungeon = new DungeonGrid(dungeonSize);
-        dungeon.generateDungeon();
-        const dungeonString = dungeon.visualizeDungeon();
+        const size = interaction.options.getInteger("size");
+        const dungeon = new Grid(size);
+        dungeon.generateGrid();
+        const dungeonString = visualizeGrid.call(dungeon);
 
         console.log(dungeon);
         console.log(dungeonString);
